@@ -89,9 +89,9 @@ const initialState: AlbumState = {
 
 export const getAlbum = createAsyncThunk(
   "albums/getAlbum",
-  async (id: string, thunkAPI) => {
+  async (slug: string, thunkAPI) => {
     try {
-      const { data, status } = await get(`/album/${id}`);
+      const { data, status } = await get(`/album/getBySlug/${slug}`);
 
       if (status !== 200) {
         return thunkAPI.rejectWithValue(data);
@@ -518,10 +518,10 @@ const albumReducer = createSlice({
 });
 
 export const {
-  setShowRateModal, 
-  setShowRatingsModal, 
+  setShowRateModal,
+  setShowRatingsModal,
   setShowAboutModal,
-  setToastStatus, 
+  setToastStatus,
   setComments,
 } = albumReducer.actions;
 
